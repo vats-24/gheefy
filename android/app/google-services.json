@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "880429933562",
+    "project_id": "ghee-app",
+    "storage_bucket": "ghee-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880429933562:android:21ca0f26c942614536ba43",
+        "android_client_info": {
+          "package_name": "com.ghee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC54eBZypuYrbUo9WhnbUpBWKGAN1rQWWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
