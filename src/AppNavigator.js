@@ -6,8 +6,6 @@ import Splash from './screens/Splash'
 import Login from './screens/Login'
 import Dashboard from './screens/Dashboard'
 import EditItem from './screens/EditItem'
-import SelectLogin from './screens/user/SelectLogin'
-import Signup from './screens/SignUp'
 import UserDashboard from './screens/UserDashboard'
 
 
@@ -19,16 +17,6 @@ const AppNavigator = () => {
             <Stack.Screen
             component={Splash}
             name="Splash"
-            options={{headerShown: false}}
-            />
-            <Stack.Screen
-            component={Signup}
-            name="SignUp"
-            options={{headerShown: false}}
-            />
-            <Stack.Screen
-            component={Login}
-            name="Login"
             options={{headerShown: false}}
             />
             <Stack.Screen
@@ -47,8 +35,8 @@ const AppNavigator = () => {
             options={{headerShown: false}}
             />
             <Stack.Screen
-            component={SelectLogin}
-            name="SelectLogin"
+            component={Login}
+            name="Login"
             options={{headerShown: false}}
             />    
         </Stack.Navigator>

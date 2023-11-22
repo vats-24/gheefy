@@ -1,5 +1,6 @@
 // FirebaseService.js
 import firestore from '@react-native-firebase/firestore';
+import Toast from 'react-native-simple-toast';
 
 // Function to fetch price variations for a specific product name within a date range
 export const getPriceVariations = async (productName, startDate, endDate) => {
@@ -50,11 +51,12 @@ const getProductIdByName = async (productName) => {
   try {
     const querySnapshot = await firestore()
       .collection('priceVariations') // Assuming 'products' is the collection containing product name and corresponding productId
-      .where('name', '==', productName)
+      .where('name_lowercase', '==', productName.toLowerCase())
       .limit(1)
       .get();
 
     if (querySnapshot.empty) {
+      //Toast.show("Price for this product didn't vary")
       return null; // Product name not found
     }
     const documentSnapshot = querySnapshot.docs[0];

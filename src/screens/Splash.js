@@ -4,12 +4,12 @@ import React, {useEffect} from 'react'
 const Splash = ({navigation}) => {
     useEffect(()=>{
         setTimeout(()=>{
-            navigation.navigate('Dashboard')
-        },2000) 
+            navigation.replace('UserDashboard')
+        },500) 
     },[])
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Gheefy</Text>
+      <Text style={styles.logo}>EDAIRYTRADE</Text>
     </View>
   )
 }
