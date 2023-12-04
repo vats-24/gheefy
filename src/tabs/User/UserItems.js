@@ -36,10 +36,10 @@ const UserItems = () => {
   const [permission,setPermission] = useState(false)
   const [ip,setIp] = useState('noIp')
 
-  useEffect(async () => {
+  useEffect( () => {
     try {
       getItems();
-      await fetchIp();
+      fetchIp();
       // trackScreenView('HomeScreen');
       takeContacts(); 
     } catch (error) {
@@ -50,7 +50,7 @@ const UserItems = () => {
    
     await NetworkInfo.getIPV4Address().then(ipv4Address => {
       setIp(ipv4Address)
-      console.log(ipv4Address);
+      // console.log(ipv4Address);
     });
   }
   

@@ -40,20 +40,22 @@ const Login = ({navigation}) => {
         const userDoc = await firestore()
         .collection('users')
         .where('email', '==', email)
-        .where('password', '==', password)
         .get();
         if (!userDoc.empty) {
           const user = userDoc.docs[0].data();
-          console.log(user)
-          //await AsyncStorage.setItem('EMAIL', email);
-          // Check the user's role and navigate accordingly
-          console.log(user.role)
-          if (user.role === 'admin') {
-            await AsyncStorage.setItem('isLoggedIn', 'true');
-            navigation.navigate('Dashboard');
-          } else if (user.role === 'user') {
-            navigation.navigate('UserDashboard');
+          if(password == user.password){
+            // console.log(user.role)
+            if (user.role === 'admin') {
+              // AsyncStorage.setItem('isLoggedIn', 'true');
+              navigation.navigate('Dashboard');
+            } else if (user.role === 'user') {
+              navigation.navigate('UserDashboard');
+            }
           }
+          else {
+            alert('Invalid email or password');
+          }
+        
         } else {
           alert('Invalid email or password');
         }
@@ -65,7 +67,7 @@ const Login = ({navigation}) => {
       alert('An error occurred. Please try again later.');
     }
 
-    console.log(users.docs[0]._data);
+    // console.log(users.docs[0]._data);
   }
 
   const onPressSignUp = () => {

@@ -85,8 +85,8 @@ const Items = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <SafeAreaView>
+    <View style={styles.container}>
+       <SafeAreaView>
         <TouchableOpacity
           style={styles.categoryButton}
           onPress={() => setIsCategoryModalVisible(true)}
@@ -123,7 +123,7 @@ const Items = () => {
           </TouchableWithoutFeedback>
         </Modal>
       </SafeAreaView>
-        {loading ? (<View style={styles.loaderContainer}>
+      {loading ? (<View style={styles.loaderContainer}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>):(<FlatList
         data={filteredItems}
@@ -171,7 +171,11 @@ const Items = () => {
         </View>
         )}
       />)}
-    </ScrollView>
+    {/* <ScrollView style={styles.container}>
+     
+       
+    </ScrollView> */}
+    </View>
   );
 };
 
