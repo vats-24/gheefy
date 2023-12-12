@@ -20,6 +20,11 @@ const Login = ({navigation}) => {
   const [password,setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  const credentials = {
+    email: "admin@gmail.com",
+    password: "admin",
+  }
+
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
       // Navigate to UserDashboard when the back button is pressed
@@ -34,12 +39,11 @@ const Login = ({navigation}) => {
   }, []);
 
 
-  const adminLogin = async ()=>{
+  /*const adminLogin = async ()=>{
     try {
       if (email !== '' && password !== ''){
         const userDoc = await firestore()
         .collection('users')
-        .where('email', '==', email)
         .get();
         if (!userDoc.empty) {
           const user = userDoc.docs[0].data();
@@ -68,6 +72,16 @@ const Login = ({navigation}) => {
     }
 
     // console.log(users.docs[0]._data);
+  }*/
+  
+  const adminLogin = () => {
+    if(email === credentials.email && password === credentials.password)
+    {
+      navigation.navigate('Dashboard');
+    }
+    else{
+      alert('Invalid email or password')
+    }
   }
 
   const onPressSignUp = () => {
